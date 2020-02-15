@@ -72,6 +72,7 @@ if (navigator.mediaDevices.getUserMedia) {
               $('.dogpic').attr('src', `${response.data.url}`)
               $('.topic').text(`${response.data.speech}`)
             } else {
+              $('.dogpic').attr('src', `https://fakeimg.pl/300/`)
               $('.topic').text(`${response.data.speech}`)
             }
           })
