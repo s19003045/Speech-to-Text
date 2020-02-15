@@ -68,9 +68,12 @@ if (navigator.mediaDevices.getUserMedia) {
           }
         })
           .then(response => {
-            console.log(response.data)
-            $('.dogpic').attr('src', `${response.data.url}`)
-            $('.topic').text(`${response.data.speech}`)
+            if (response.data.status === 'success') {
+              $('.dogpic').attr('src', `${response.data.url}`)
+              $('.topic').text(`${response.data.speech}`)
+            } else {
+              $('.topic').text(`${response.data.speech}`)
+            }
           })
           .catch(err => {
             console.log(err)
