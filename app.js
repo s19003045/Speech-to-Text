@@ -1,13 +1,26 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
-const port = 3000
+const port = process.env.PORT || 3000
+const bodyParser = require("body-parser")
 
 // 判別開發環境
 if (process.env.NODE_ENV !== "production") {
   // 如果不是 production 模式，使用 dotenv 讀取 .env 檔案
   require("dotenv").config();
 }
+
+app.use(
+  bodyParser.urlencoded({
+    limit: "5mb",
+    extended: true
+  })
+);
+app.use(
+  bodyParser.json({
+    limit: "5mb"
+  })
+);
 
 app.engine('handlebars', exphbs({
   defaultLayout: "main"
